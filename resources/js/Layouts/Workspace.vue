@@ -1,0 +1,6 @@
+<script setup lang="ts">
+import { Link, usePage } from '@inertiajs/vue3';
+defineProps<{product: any; workspace?: any}>();
+const page = usePage<any>();
+</script>
+<template><div class="workspace"><aside><Link href="/dashboard" class="brand"><span class="mark">{{ product.name[0] }}</span>{{ product.name }}</Link><p class="eyebrow">{{ workspace?.name || 'YOUR WORKSPACES' }}</p><nav v-if="workspace"><Link :href="`/app/${workspace.slug}/dashboard`">Overview</Link><Link v-for="(module,key) in product.modules" :key="key" :href="`/app/${workspace.slug}/${key}`">{{ module.label }}</Link><div class="nav-divider"></div><Link :href="`/app/${workspace.slug}/team`">Team</Link><Link :href="`/app/${workspace.slug}/billing`">Subscription</Link></nav><nav v-else><Link href="/dashboard">Workspaces</Link><Link href="/profile">Your profile</Link></nav><div class="aside-bottom"><Link href="/dashboard">Switch workspace</Link><Link href="/logout" method="post" as="button">Sign out</Link></div></aside><main><header class="topbar"><span>{{ product.tagline }}</span><Link href="/profile">{{ page.props.auth?.user?.name }}</Link></header><div class="content"><div v-if="page.props.flash?.status" role="status" class="notice">{{ page.props.flash.status }}</div><slot /></div></main></div></template>

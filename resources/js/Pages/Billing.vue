@@ -1,0 +1,3 @@
+<script setup lang="ts">
+import {Head} from '@inertiajs/vue3';import Workspace from '@/Layouts/Workspace.vue';defineProps<{product:any;workspace:any;plan:any;configured:boolean}>();
+</script><template><Head title="Subscription"/><Workspace :product="product" :workspace="workspace"><h1>Subscription</h1><section class="panel"><p class="eyebrow">CURRENT PLAN</p><h2>{{plan.name}}</h2><p class="muted">Paid subscriptions are not available in this development edition.</p><h3>Workspace limits</h3><dl><template v-for="(value,key) in JSON.parse(plan.limits)" :key="key"><dt>{{String(key).replaceAll('_',' ')}}</dt><dd>{{value}}</dd></template></dl></section></Workspace></template>

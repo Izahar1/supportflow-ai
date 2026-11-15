@@ -1,0 +1,4 @@
+<script setup lang="ts">
+import { Head, Link } from '@inertiajs/vue3';
+defineProps<{product:any}>();
+</script><template><Head :title="product.name"/><div class="marketing"><header><strong>{{ product.name }}</strong><div><Link href="/login">Sign in</Link><Link href="/register" class="button">Create account</Link></div></header><section class="hero"><p class="eyebrow">A WORKSPACE FOR YOUR BUSINESS</p><h1>{{ product.tagline }}.</h1><p>Bring your team and daily operations together in one organized workspace.</p><Link href="/register" class="button">Create your workspace →</Link></section><section class="module-grid"><article v-for="(module,key) in product.modules" :key="key" class="panel"><span class="eyebrow">{{ String(key).replaceAll('_',' ') }}</span><h2>{{ module.label }}</h2></article></section><footer>{{ product.name }} · Local development edition</footer></div></template>
